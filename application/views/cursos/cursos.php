@@ -1,7 +1,4 @@
-<?php
-
-	if($cursos){
-
+<?php if($cursos){
 		foreach ($cursos ->result() as $curso)
 		{?> 
 		

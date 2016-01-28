@@ -8,6 +8,7 @@ class Login extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->helper("url");
+		$this->load->model('login_model');
 		//$this->load->model('codigofacilito_model');
 
 	}
@@ -24,8 +25,6 @@ class Login extends CI_Controller {
 	{
 		 if($this->input->post("login")){
 		 	
-		 	$this->load->view('bases/headers');
-			$this->load->view('home/home');
 		 	//Validaciones
             //name del campo, titulo, restricciones
 			$this->form_validation->set_rules('user', 'Rut', 'required|min_length[3]|numeric|trim');
@@ -42,20 +41,44 @@ class Login extends CI_Controller {
 
 			$this->form_validation->set_message('valid_email','El campo %s debe ser un email correcto');
 			
-			if($this->form_validation->run()!=false){
-				
-				
-				$this->load->view('home/loginAdmin');
-				$this->load->view('bases/footer');
+			if($this->form_validation->run()!=false){ 
+
+				$alumnos=$this->login_model->verificaAlumno($this->input->post("user"));
+
+				if($alumnos->num_rows()==1)
+				{
+					$alumno = $alumnos ->result();
+					if($alumno[0]->CURSO ==1)
+						redirect(base_url()."admin");
+					else
+						$this->cargaAlumno($alumno);
+
+				}
+
+
 			}
 			else{ $this->index();}
 
-		}
-		else{$this->index();}
+		}else{$this->index();}
+	
+	}
+	function cargaAlumno($alumno)
+	{
+		$this->session->set_userdata(array(
+			"RUT"=>$this->input->post("user"),
+			"NOMBRE"=>$alumno[0]->NOMBRE,
+			"CURSO"=>$alumno[0]->CURSO
+			));
 
+		redirect(base_url()."talleres/".$this->input->post("user"));
+	}
 
-		
-			
+	function admin()
+	{
+				$this->load->view('bases/headers');
+				$this->load->view('home/home');
+				$this->load->view('home/loginAdmin');
+				$this->load->view('bases/footer');
 	}
 }
 ?>

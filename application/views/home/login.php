@@ -1,10 +1,10 @@
-<div class="container-fluid" id>
+<div class="container-fluid">
 <div class="row">
 
 <div class="col-md-4">
 				<div class="loginmodal-container">
 					<h1>Ingreso toma de talleres</h1><br>
-				 <?php echo form_open('/login/login/ingreso',array('id' => 'formLogin'));?>
+				 <?php echo form_open('ingreso',array('id' => 'formLogin'));?>
 					<input type="text" name="user" placeholder="RUT">
 					<?php echo  validation_errors();?><!--mostrar los errores de validación-->
 					<input type="submit" name="login" class="login loginmodal-submit" value="Ingresar">
