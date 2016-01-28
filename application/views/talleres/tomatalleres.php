@@ -35,53 +35,45 @@
 			  <div class="panel-heading">Opciones toma talleres</div>
 				  <div class="panel-body">
 
-				  			    <div class="row">
-      <form class="form">
-		<div class="btn-group" data-toggle="buttons">
+			<div class="row">
 			
-
+			<div class="table-responsive">          
+				<table class="table">
+					<thead>
+					<tr>
+							<th>#</th>
+							<th>NOMBRE</th>
+							<th>HORARIO</th>
+							<th>PROFESOR</th>
+							<th>UBICACION</th>
+							<th>CUPOS</th>
+						</tr>
+						
+					</thead>
+					<tbody>
 <?php if($talleres){
+
 		foreach ($talleres ->result() as $taller)
 		{?> 
-		
-			<label class="btn btn-default">
-				<input name="year" value="2011" type="radio">
-				<div class="col-md-12">
-					<div class="table-responsive">          
-						<table class="table">
-							<thead>
-								<tr>
-									<th><?php ECHO $taller->NOMBRE?></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Horario</td>
-									<td><?php ECHO $taller->HORARIO?></td>
-								</tr>
-								<tr>
-									<td>Profesor</td>
-									<td><?php ECHO $taller->PROFESOR?></td>
-								</tr>
-								<tr>
-									<td>Ubicacion</td>
-									<td><?php ECHO $taller->UBICACION?></td>
-								</tr>
-								<tr>
-									<td>Cupos</td>
-									<td><?php ECHO $taller->CUPOS?></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</label>
-		<?php }
-	}else{
 
+						<tr>
+						<td><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></td>
+							<td><?php ECHO $taller->NOMBRE?></td>
+							<td><?php ECHO $taller->HORARIO?></td>
+							<td><?php ECHO $taller->PROFESOR?></td>
+							<td><?php ECHO $taller->UBICACION?></td>
+							<td><?php ECHO $taller->CUPOS?></td>
+
+						</tr>
+					
+			<?php }
+	}else{
 		echo "<p>error en la aplicacion</p>";
 		} ?>
-        </div><button type="submit" class="btn btn-default">Submit</button></form>
+
+		</tbody>
+				</table>
+			</div>
 </div>
 
 				   
