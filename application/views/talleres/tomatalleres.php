@@ -1,6 +1,10 @@
+<style type="text/css">
+	.dispo{color: green;}
+	.nodispo{color: red;}
+</style>
 <div class="container-fluid">
 	<div class="row">
-
+<form class="form">
 		<div class="col-md-5">
 			<div class="loginmodal-container">
 				<h2>Toma de talleres 2016</h2><br>
@@ -29,6 +33,7 @@
   						</div>
 			</div>
 		</div>
+
 		<div class="col-md-12">
 
 			<div class="panel panel-success">
@@ -43,6 +48,7 @@
 					<tr>
 							<th>#</th>
 							<th>NOMBRE</th>
+							<th>ESTADO</th>
 							<th>HORARIO</th>
 							<th>PROFESOR</th>
 							<th>UBICACION</th>
@@ -57,12 +63,13 @@
 		{?> 
 
 						<tr>
-						<td><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></td>
+						<td><input type="radio" name="optionsRadios" value="<?php ECHO $taller->ID?>" id="optionsRadios2" value="option2"></td>
 							<td><?php ECHO $taller->NOMBRE?></td>
+							<td><?php ECHO $taller->ESTADO?></td>
 							<td><?php ECHO $taller->HORARIO?></td>
 							<td><?php ECHO $taller->PROFESOR?></td>
 							<td><?php ECHO $taller->UBICACION?></td>
-							<td><?php ECHO $taller->CUPOS?></td>
+							<td><?php ECHO $taller->CUPOSTOTALES?></td>
 
 						</tr>
 					
@@ -74,21 +81,26 @@
 		</tbody>
 				</table>
 			</div>
-</div>
+			</div>
 
 				   
 				  </div>
 			</div>
 		</div>
+		<div class="col-md-12">
+		<button type="submit" class="btn btn-success btn-lg">Validar</button>
+  <a href="<?php echo base_url("ingreso"); ?>" class="btn btn-danger btn-lg">Reiniciar encuesta</a>
+  </div>
+  </form >
 	</div>
 
 </div>
 <script type="text/javascript">
 $('.form').submit(function(){
-    //alert($('input[name=year]:checked').val());
+    alert($('input[name=optionsRadios]:checked').val());
   
-  	alert($(this).serialize());
-  
+  	//alert($(this).serialize());
+   BootstrapDialog.alert('I want banana!');
     return false;
 });
 </script>

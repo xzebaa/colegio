@@ -15,7 +15,21 @@ function __construct()
 function obtenerTalleres($rut)
 {
 	
-	$sql="SELECT talleres.ID,talleres.NOMBRE,talleres.HORARIO,talleres.PROFESOR,talleres.UBICACION,talleres.CUPOS,talleres.INSCRITOS FROM t003_talleres as talleres left join t005_talleres_cursos as tallCursos on talleres.ID=tallCursos.TALLER left join t001_alumno as alumnos on tallCursos.CURSO= alumnos.CURSO where alumnos.RUT=?";
+	$sql="SELECT talleres.ID,
+talleres.NOMBRE,
+talleres.HORARIO
+,talleres.PROFESOR
+,talleres.UBICACION
+,talleres.CUPOS
+,talleres.INSCRITOS
+,(talleres.CUPOS-talleres.INSCRITOS) as CUPOSTOTALES
+,IF((talleres.CUPOS-talleres.INSCRITOS) > 0, \"<label CLASS='dispo'>DISPONIBLE</LABEL>\", \"<label CLASS='nodispo'>LISTA ESPERA</LABEL>\") as ESTADO
+FROM t003_talleres as talleres 
+left join t005_talleres_cursos as tallCursos on 
+talleres.ID=tallCursos.TALLER 
+left join t001_alumno as alumnos on
+tallCursos.CURSO= alumnos.CURSO 
+where alumnos.RUT=?";
 	
 	$query=$this->db->query($sql,array($rut));
 
