@@ -7,9 +7,9 @@
         </div> 
 
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-right">
        
-        <li><a href="#">Link</a></li>
+       <?php if($this->session->userdata('RUT')){?> <li><a href="<?php echo base_url("login/login/killSession"); ?>">Salir</a></li> <?php }?>
       </ul>
     </div> 
 </nav>

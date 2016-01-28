@@ -34,7 +34,6 @@ Quisque posuere, dui at tempor posuere, diam turpis blandit lorem, nec interdum 
 <script type="text/javascript">
 		$(document).ready(function(){
 			$("#formLogin").submit(function(){
-				alert("ada");
 				$.ajax({
 					url: $(this).attr("action"),
 					type: $(this).attr("method"),

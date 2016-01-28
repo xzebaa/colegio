@@ -80,5 +80,11 @@ class Login extends CI_Controller {
 				$this->load->view('home/loginAdmin');
 				$this->load->view('bases/footer');
 	}
+
+	function killSession()
+	{
+		$this->session->sess_destroy();
+		redirect(base_url());
+	}
 }
 ?>
