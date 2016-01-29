@@ -74,14 +74,14 @@ class Login extends CI_Controller {
 			"CURSO"=>$alumno[0]->CURSO
 			));
 
-		redirect(base_url()."talleres/".$this->session->userdata('NOMBRE'));
+		redirect(base_url()."talleres/".str_ireplace(" ","_",str_ireplace(",","",$this->session->userdata('NOMBRE'))));
 	}
 	function redirectUserAct()
 	{
 		if($this->session->userdata('CURSO') ==1)
 			redirect(base_url()."admin");
 		else if($this->session->userdata('CURSO') >1)
-			redirect(base_url()."talleres/".str_ireplace(",","",str_ireplace(" ","_",$this->session->userdata('NOMBRE'))));
+			redirect(base_url()."talleres/".str_ireplace(" ","_",str_ireplace(",","",$this->session->userdata('NOMBRE'))));
 	}
 
 	function admin()
