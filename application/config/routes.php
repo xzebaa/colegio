@@ -56,4 +56,4 @@ $route['nuevo'] = 'cursos/nuevo';
 $route['ingreso'] = 'login/login/ingreso';
 $route['admin'] = 'login/login/admin';
 $route['talleres/(:any)'] = 'usuarios/usuarios/index';
-$route['talleres/(:any)/inscrito'] = 'cursos/nuevo';
+$route['talleres/(:any)/confirmacion'] = 'talleres/talleres/inscribeTaller';
