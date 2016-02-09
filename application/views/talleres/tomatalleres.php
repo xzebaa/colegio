@@ -1,3 +1,4 @@
+
 <style type="text/css">
 	.dispo{color: green;}
 	.nodispo{color: red;}
@@ -112,7 +113,7 @@ $('#btInsc').click(function() {
 	}
 	else
 	{
-		alert($('#taller'+$('input[name=optionsRadios]:checked').val()).val());
+		//alert($('#taller'+$('input[name=optionsRadios]:checked').val()).val());
 
 		if($('#taller'+$('input[name=optionsRadios]:checked').val()).val()==0)
 		{
@@ -128,7 +129,26 @@ $('#btInsc').click(function() {
 	            callback: function(result) {
 	                // result will be true if button was click, while it will be false if users close the dialog directly.
 	                if(result) {
+	    						                	var resp = ajax_({
+	       				 'taller':$('input[name=optionsRadios]:checked').val()
+	    				},'<?php echo base_url("talleres/talleres/verificaEspera");?>');
+			//alert(resp);
+	    				if(resp==1)
+	    				{
 	    					 $( ".form" ).submit();
+	    				}
+		    			else
+		    			{
+		    				BootstrapDialog.show({
+				            title: 'Opps ,tenemos problemas.',
+				            message: resp,
+				            buttons: [{
+				                label: 'Aceptar',
+				                action: function(dialog) {
+				                 location.reload();
+				                }
+				            }] });
+		    			}
 	    				}
 	                  
 	                }

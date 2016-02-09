@@ -19,6 +19,8 @@ class Login extends CI_Controller {
 		$this->load->view('home/home');
 		$this->load->view('home/login');
 		$this->load->view('bases/footer');
+		
+		
 	}
 
 	public function ingreso()

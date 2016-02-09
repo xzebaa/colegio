@@ -53,6 +53,42 @@ class Talleres extends CI_Controller {
 
 	//	echo "aquiiii    ".$this->obtenTalleres();
 	}
+	public function verificaEspera()
+	{
+
+		$result=$this->talleres_model->verificaInscripcon($this->session->userdata('RUT'),$this->input->post("taller"));
+
+				if($result->num_rows()==1)
+				{
+					$respuesta="";
+					$mensaje="";
+
+					foreach ($result ->result() as $respuesta)
+					{
+						$respuesta=$respuesta->resp;
+
+					}
+
+					switch ($respuesta) {
+					    case "1":
+					       $mensaje="1";
+					        break;
+					    case "2":
+					        $mensaje="Ya posees un curso inscrito.";
+					        break;
+					    case "3":
+					        $mensaje="1";
+					        break;
+					    default:
+       						$mensaje="Lo setimos estamos experimentando dificultades de conexion,intentalo nuevamente!";
+					}
+
+					echo $mensaje; 
+
+				}
+				else
+					echo "Lo setimos estamos experimentando dificultades de conexion,intentalo nuevamente!";
+	}
 
 	/*public function inscribeTaller()
 	{
@@ -63,6 +99,10 @@ class Talleres extends CI_Controller {
 
 		public function inscribeTaller()
 	{
+		$this->load->view('bases/headers');
+		$this->load->view('home/home');
+
+
 		$estado=2;
 		if($this->input->post("taller".$this->input->post("optionsRadios"))!=0)
 			$estado=1;
@@ -73,14 +113,37 @@ class Talleres extends CI_Controller {
 			$this->input->post("optionsRadios"),
 			$estado);
 
-		$this->talleres_model->inscribeTaller($datos);
+		$respuestas=$this->talleres_model->inscribeTaller($datos);
+
+		$respuesta = $respuestas ->result();
+
+		$tall= array("inscripciones"=>$this->obtenInscr());
+		if($respuesta[0]->estado==1)
+		{
+				$this->load->view('talleres/inscripcion',$tall);
+		}
+		else
+		{
+			echo "no agregado";
+		}
 
 
-
-		$this->load->view('bases/headers');
-		$this->load->view('home/home');
-		echo "agregado";
+		$this->load->view('bases/footer');
 		
+	}
+
+	public function obtenInscr()
+	{
+		$insc=$this->talleres_model->obtenInscr($this->session->userdata('RUT'));
+		return $insc;
+	}
+
+	function cargaVar()
+	{
+		 if($this->input->post("login")){
+
+			$_SESSION["pdf"]=$this->input->post("var");
+		 }
 	}
 }
 ?>
