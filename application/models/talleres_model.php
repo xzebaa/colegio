@@ -33,24 +33,19 @@ function inscribeTaller($datos)
 function obtenInscr($rut)
 {
 	$sql="SELECT 
-		inscrito.ID as REGISTRO,
-		inscrito.rut AS RUT,
-		alumno.nombre AS NOMBRE,
-		inscrito.fecha_insc AS FECHA,
-		taller.nombre AS TALLER,
-		estado.nombre AS ESTADO,
-		CURSO.NOMBRE AS CURSO
-
-		FROM t004_inscrito as inscrito
-		left join t001_alumno as alumno on 
-		inscrito.RUT=alumno.RUT
-		left join t003_talleres as taller on 
-		inscrito.TALLER=taller.id
-		left join t006_estado_inscripcion as estado on 
-		inscrito.ESTADO=estado.ID
-		left join t002_curso as curso on 
-		alumno.CURSO=curso.id
-		WHERE INSCRITO.RUT=?";
+inscrito.ID as REGISTRO,
+inscrito.rut AS RUT, 
+alumno.nombre AS NOMBRE, 
+inscrito.fecha_insc AS FECHA
+, taller.nombre AS TALLER, 
+estado.nombre AS ESTADO, 
+curso.NOMBRE AS CURSO 
+FROM t004_inscrito as inscrito 
+left join t001_alumno as alumno on inscrito.RUT=alumno.RUT 
+left join t003_talleres as taller on inscrito.TALLER=taller.id 
+left join t006_estado_inscripcion as estado on inscrito.ESTADO=estado.ID 
+left join t002_curso as curso on alumno.CURSO=curso.id 
+WHERE inscrito.RUT=?";
 	
 	$query=$this->db->query($sql,array($rut));
 

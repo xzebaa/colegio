@@ -37,7 +37,7 @@ $txt = <<<EOD
       
   <div>
     *Te recomendamos guardar este comprobante
-    <img width="30" height="30" src="http://cole.local/assets/img/check.png" alt="">
+    <img width="30" height="30" src="http://www.colegio.mantenciondeprados.cl/assets/img/check.png" alt="">
   </div>
 
 </div>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Talleres extends CI_Controller {
+class TALLERES extends CI_Controller {
 		function __construct(){
 		parent::__construct();
 
@@ -10,7 +10,7 @@ class Talleres extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->helper("url");
-		$this->load->model('talleres_model');
+		$this->load->model('TALLERES_MODEL');
 		//$this->load->model('codigofacilito_model');
 
 	}
@@ -18,7 +18,7 @@ class Talleres extends CI_Controller {
 	public function verifica()
 	{
 
-		$result=$this->talleres_model->verificaInscripcon($this->session->userdata('RUT'),$this->input->post("taller"));
+		$result=$this->TALLERES_MODEL->verificaInscripcon($this->session->userdata('RUT'),$this->input->post("taller"));
 
 				if($result->num_rows()==1)
 				{
@@ -56,7 +56,7 @@ class Talleres extends CI_Controller {
 	public function verificaEspera()
 	{
 
-		$result=$this->talleres_model->verificaInscripcon($this->session->userdata('RUT'),$this->input->post("taller"));
+		$result=$this->TALLERES_MODEL->verificaInscripcon($this->session->userdata('RUT'),$this->input->post("taller"));
 
 				if($result->num_rows()==1)
 				{
@@ -113,7 +113,7 @@ class Talleres extends CI_Controller {
 			$this->input->post("optionsRadios"),
 			$estado);
 
-		$respuestas=$this->talleres_model->inscribeTaller($datos);
+		$respuestas=$this->TALLERES_MODEL->inscribeTaller($datos);
 
 		$respuesta = $respuestas ->result();
 
@@ -134,7 +134,7 @@ class Talleres extends CI_Controller {
 
 	public function obtenInscr()
 	{
-		$insc=$this->talleres_model->obtenInscr($this->session->userdata('RUT'));
+		$insc=$this->TALLERES_MODEL->obtenInscr($this->session->userdata('RUT'));
 		return $insc;
 	}
 
@@ -147,4 +147,3 @@ class Talleres extends CI_Controller {
 	}
 }
 ?>
-

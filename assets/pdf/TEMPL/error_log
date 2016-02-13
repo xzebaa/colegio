@@ -1,0 +1,3 @@
+[11-Feb-2016 03:33:39 UTC] PHP Warning:  imagecreatefrompng() [<a href='function.imagecreatefrompng'>function.imagecreatefrompng</a>]: Couldn't resolve host name in /home/mantenci/public_html/colegio/assets/pdf/tcpdf.php on line 7033
+[11-Feb-2016 03:33:39 UTC] PHP Warning:  imagecreatefrompng(http://cole.local/assets/img/check.png) [<a href='function.imagecreatefrompng'>function.imagecreatefrompng</a>]: failed to open stream: operation failed in /home/mantenci/public_html/colegio/assets/pdf/tcpdf.php on line 7033
+[11-Feb-2016 03:33:39 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/mantenci/public_html/colegio/assets/pdf/tcpdf.php:7033) in /home/mantenci/public_html/colegio/assets/pdf/tcpdf.php on line 7624

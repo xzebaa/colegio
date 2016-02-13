@@ -131,7 +131,7 @@ $('#btInsc').click(function() {
 	                if(result) {
 	    						                	var resp = ajax_({
 	       				 'taller':$('input[name=optionsRadios]:checked').val()
-	    				},'<?php echo base_url("talleres/talleres/verificaEspera");?>');
+	    				},'<?php echo base_url("talleres/TALLERES/verificaEspera");?>');
 			//alert(resp);
 	    				if(resp==1)
 	    				{
@@ -175,7 +175,7 @@ $('#btInsc').click(function() {
 
 	                	var resp = ajax_({
 	       				 'taller':$('input[name=optionsRadios]:checked').val()
-	    				},'<?php echo base_url("talleres/talleres/verifica");?>');
+	    				},'<?php echo base_url("talleres/TALLERES/verifica");?>');
 			//alert(resp);
 	    				if(resp==1)
 	    				{

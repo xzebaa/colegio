@@ -29,7 +29,7 @@
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
        
-       <?php if($this->session->userdata('RUT')){?> <li><a href="<?php echo base_url("login/login/killSession"); ?>">Salir</a></li> <?php }?>
+       <?php if($this->session->userdata('RUT')){?> <li><a href="<?php echo base_url("login/LOGIN/killSession"); ?>">Salir</a></li> <?php }?>
       </ul>
     </div> 
 </nav>

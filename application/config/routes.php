@@ -53,7 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['nuevo'] = 'cursos/nuevo';
-$route['ingreso'] = 'login/login/ingreso';
-$route['admin'] = 'login/login/admin';
-$route['talleres/(:any)'] = 'usuarios/usuarios/index';
-$route['talleres/(:any)/confirmacion'] = 'talleres/talleres/inscribeTaller';
+$route['ingreso'] = 'login/LOGIN/ingreso';
+$route['admin'] = 'login/LOGIN/admin';
+$route['talleres/(:any)'] = 'usuarios/USUARIOS/index';
+$route['talleres/(:any)/confirmacion'] = 'talleres/TALLERES/inscribeTaller';

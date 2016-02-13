@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class LOGIN extends CI_Controller {
 		function __construct(){
 		parent::__construct();
 		//$this->load->helper('mihelper');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->helper("url");
-		$this->load->model('login_model');
+		$this->load->model('LOGIN_MODEL');
 		//$this->load->model('codigofacilito_model');
 
 	}
@@ -45,7 +45,7 @@ class Login extends CI_Controller {
 			
 			if($this->form_validation->run()!=false){ 
 
-				$alumnos=$this->login_model->verificaAlumno($this->input->post("user"));
+				$alumnos=$this->LOGIN_MODEL->verificaAlumno($this->input->post("user"));
 
 				if($alumnos->num_rows()==1)
 				{

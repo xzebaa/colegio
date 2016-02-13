@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuarios extends CI_Controller {
+class USUARIOS extends CI_Controller {
 		function __construct(){
 		parent::__construct();
 
@@ -10,7 +10,7 @@ class Usuarios extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->helper("url");
-		$this->load->model('usuarios_model');
+		$this->load->model('USUARIOS_MODEL');
 		//$this->load->model('codigofacilito_model');
 
 	}
@@ -46,7 +46,7 @@ class Usuarios extends CI_Controller {
 
 	public function obtenTalleres()
 	{
-		$talleres=$this->usuarios_model->obtenerTalleres($this->session->userdata('RUT'));
+		$talleres=$this->USUARIOS_MODEL->obtenerTalleres($this->session->userdata('RUT'));
 		return $talleres;
 	}
 /*SELECT talleres.ID,talleres.NOMBRE,talleres.HORARIO,talleres.PROFESOR,talleres.UBICACION,talleres.CUPOS,talleres.INSCRITOS FROM t003_talleres as talleres 
@@ -55,4 +55,3 @@ talleres.ID=tallCursos.TALLER
 where  tallCursos.CURSO=19*/
 }
 ?>
-

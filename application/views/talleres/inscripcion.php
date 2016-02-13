@@ -62,6 +62,6 @@ console.log(decodedString); // Outputs: "Hello World!"*/
 
 $('#imprimir').click(function() {
 
-window.open('<?php echo base_url("assets/PDF/TEMPL/certificado.php"); ?>?I='+Base64.encode('<?php ECHO $inscripcion->REGISTRO?>')+'&R='+Base64.encode('<?php ECHO $inscripcion->RUT?>')+'&N='+Base64.encode('<?php ECHO $inscripcion->NOMBRE?>')+'&C='+Base64.encode('<?php ECHO $inscripcion->CURSO?>')+'&T='+Base64.encode('<?php ECHO $inscripcion->TALLER?>')+'&E='+Base64.encode('<?php ECHO $inscripcion->ESTADO?>')+'&F='+Base64.encode('<?php ECHO $inscripcion->FECHA?>')+'&IM='+Base64.encode('<?php echo base_url("assets/img/baner.png"); ?>'),'_blank');
+window.open('<?php echo base_url("assets/pdf/TEMPL/certificado.php"); ?>?I='+Base64.encode('<?php ECHO $inscripcion->REGISTRO?>')+'&R='+Base64.encode('<?php ECHO $inscripcion->RUT?>')+'&N='+Base64.encode('<?php ECHO $inscripcion->NOMBRE?>')+'&C='+Base64.encode('<?php ECHO $inscripcion->CURSO?>')+'&T='+Base64.encode('<?php ECHO $inscripcion->TALLER?>')+'&E='+Base64.encode('<?php ECHO $inscripcion->ESTADO?>')+'&F='+Base64.encode('<?php ECHO $inscripcion->FECHA?>')+'&IM='+Base64.encode('<?php echo base_url("assets/img/baner.png"); ?>'),'_blank');
 });
 </script>
