@@ -4,13 +4,15 @@
 <div class="col-md-4">
 				<div class="loginmodal-container">
 					<h1>Ingreso toma de talleres</h1><br>
-				  <form>
+				 <?php echo form_open('ingresoADM',array('id' => 'formLogin'));?>
 					<input type="text" name="user" placeholder="RUT">
-					<input type="password" name="pass" placeholder="Password">
-					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
-				  </form>
+						<input type="password" name="pass" placeholder="Password">
+					<?php echo  validation_errors();?><!--mostrar los errores de validación-->
+					<input type="submit" name="login" class="login loginmodal-submit" value="Ingresar">
+				  <?php echo form_close()?>
 					
 				  <div class="login-help">
+
 				  </div>
 				</div>
 </div>
@@ -29,3 +31,24 @@ Quisque posuere, dui at tempor posuere, diam turpis blandit lorem, nec interdum 
 </div>
 
 <link rel="stylesheet" href="<?php echo base_url("assets/css/login.css"); ?>" />
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#formLogin").submit(function(){
+				$.ajax({
+					url: $(this).attr("action"),
+					type: $(this).attr("method"),
+					data: $(this).serialize(),
+					beforeSend:function(){
+						$(".loader").show();
+					},
+                    success:function(data){
+                        //alert(data);
+
+                    }
+				});
+
+			});
+			return false;
+		});
+</script>

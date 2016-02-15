@@ -15,7 +15,10 @@ function __construct()
 function verificaAlumno($rut)
 {
 	
-	$sql="SELECT CURSO,NOMBRE FROM t001_alumno where rut=?";
+	$sql="SELECT t001_alumno.CURSO as CURSOID,t001_alumno.NOMBRE,t002_curso.NOMBRE as CURSO FROM t001_alumno 
+LEFT JOIN t002_curso ON
+t001_alumno.CURSO=t002_curso.ID
+where rut=?";
 	$query=$this->db->query($sql,array($rut));
 
 	if($query->num_rows()>0) return $query;

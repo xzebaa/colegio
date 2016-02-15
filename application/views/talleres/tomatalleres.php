@@ -27,7 +27,7 @@
 						      </tr>
 						      <tr>
 						        <td>Curso</td>
-						        <td><?php echo $CURSO ?></td>
+						        <td><?php echo $NOMCURSO ?></td>
 						      </tr>
 						    </tbody>
 						  </table>

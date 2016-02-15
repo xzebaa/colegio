@@ -24,6 +24,7 @@ class USUARIOS extends CI_Controller {
 		$datos=array("RUT"=>$this->session->userdata('RUT'),
 					"NOMBRE"=>$this->session->userdata('NOMBRE'),
 					"CURSO"=>$this->session->userdata('CURSO'),
+					"NOMCURSO"=>$this->session->userdata('NOMCURSO'),
 					"talleres"=>$this->obtenTalleres());
 
 		$this->load->view('talleres/tomatalleres',$datos);
