@@ -11,8 +11,7 @@ class PRINCIPAL extends CI_Controller {
 		
 		$this->load->library('form_validation');
 		$this->load->helper("url");
-		/*$this->load->model('TALLERES_MODEL');
-		//$this->load->model('codigofacilito_model');*/
+		$this->load->model('ADMIN_MODEL');
 
 	}
 
@@ -24,45 +23,70 @@ class PRINCIPAL extends CI_Controller {
 	}
 
 
-	/*public function verifica()
+	public function obtenTalleres()
 	{
 
-		$result=$this->TALLERES_MODEL->verificaInscripcon($this->session->userdata('RUT'),$this->input->post("taller"));
+		$result=$this->ADMIN_MODEL->obtenerTalleres();
 
-				if($result->num_rows()==1)
+				if($result->num_rows()>1)
 				{
 					$respuesta="";
 					$mensaje="";
 
 					foreach ($result ->result() as $respuesta)
 					{
-						$respuesta=$respuesta->resp;
-
+						$respuesta->CURSOS=$this->obtenTalleresCursos($respuesta->ID);
 					}
+						$datos=array("talleres"=>$result );
 
-					switch ($respuesta) {
-					    case "1":
-					       $mensaje="1";
-					        break;
-					    case "2":
-					        $mensaje="Ya posees un curso inscrito.";
-					        break;
-					    case "3":
-					        $mensaje="Lo sentimos, este curso se ha completado.";
-					        break;
-					    default:
-       						$mensaje="Lo setimos estamos experimentando dificultades de conexion,intentalo nuevamente!";
-					}
-
-					echo $mensaje; 
-
+						echo $this->load->view('admin/talleresPrincipal',$datos, TRUE);
+						
 				}
 				else
-					echo "Lo setimos estamos experimentando dificultades de conexion,intentalo nuevamente!";
-
-	//	echo "aquiiii    ".$this->obtenTalleres();
+					echo "0";
 	}
-	public function verificaEspera()
+	
+	public function obtenTalleresCursos($id)
+	{
+
+		$result=$this->ADMIN_MODEL->obtenerTalleresCursos($id);
+
+		if($result->num_rows()>1)
+			{
+					$respuesta="";
+					$mensaje="";
+
+					foreach ($result ->result() as $respuesta)
+					{
+						$mensaje=$mensaje."</br>".$respuesta->NOMBRE;
+					}
+			}
+
+		return $mensaje;
+	}
+
+	public function listaPorCurso()
+	{
+
+		$result=$this->ADMIN_MODEL->listaPorCurso($this->input->post("cur"));
+
+				if($result){
+					if($result->num_rows()>0)
+					{
+						$respuesta="";
+						$mensaje="";
+
+							$datos=array("talleres"=>$result );
+							echo $this->load->view('admin/listaAlumnosTaller',$datos, TRUE);
+							
+					}
+					else{
+						echo "0";}
+				}
+				else{}
+					echo "0";
+	}
+	/*public function verificaEspera()
 	{
 
 		$result=$this->TALLERES_MODEL->verificaInscripcon($this->session->userdata('RUT'),$this->input->post("taller"));
