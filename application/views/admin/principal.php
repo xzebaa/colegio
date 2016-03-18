@@ -1,3 +1,10 @@
+
+<style type="text/css">
+  body {
+  font: 12px Arial, Helvetica, sans-serif;
+}
+</style>
+
 <div class="container-fluid">
 	<div class="row">
 		<div></div>
@@ -6,12 +13,12 @@
 <div class="list-group">
   <a href="#Talleres" id="talle" class="list-group-item">
     <h4 class="list-group-item-heading">Talleres</h4>
-    <p class="list-group-item-text">Informacion sobre cupos, lista espera, inscritos</p>
+    <p class="list-group-item-text">Información sobre cupos, lista espera, inscritos</p>
   </a>
 
   <a href="#Alumnos" id="alum" class="list-group-item">
     <h4 class="list-group-item-heading">Alumnos</h4>
-    <p class="list-group-item-text">consulta de estado del alumno por rut.</p>
+    <p class="list-group-item-text">Consulta de estado del alumno por Rut.</p>
   </a>
 
 </div>
@@ -33,7 +40,7 @@ $( "#talle" ).click(function() {
 });
 
 $( "#alum" ).click(function() {
-      var resp = ajax_({},'<?php echo base_url("admin/PRINCIPAL/OBTENTALLERES");?>');
+      var resp = ajax_({},'<?php echo base_url("admin/PRINCIPAL/principalBusqueda");?>');
     if(resp!=0){
        $( "#contDinamico" ).html(resp);
        $("a").removeClass( "active" );

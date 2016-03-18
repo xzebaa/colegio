@@ -3,7 +3,7 @@
 
 <div class="col-md-4">
 				<div class="loginmodal-container">
-					<h1>Ingreso toma de talleres</h1><br>
+					<h1>Ingreso</h1><br>
 				 <?php echo form_open('ingreso',array('id' => 'formLogin'));?>
 					<input type="text" name="user" placeholder="RUT">
 					<?php echo  validation_errors();?><!--mostrar los errores de validación-->
@@ -18,11 +18,13 @@
 <div class="col-md-7">
 
 <div class="panel panel-success">
-  <div class="panel-heading">Informacion Sobre toma de talleres</div>
+ <div class="panel-heading">Instrucciones</div>
   <div class="panel-body">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id leo at est cursus cursus sit amet at risus. Nulla facilisi. Mauris scelerisque leo non neque aliquam, venenatis faucibus mauris semper. Duis id lacus ac mauris tincidunt facilisis tincidunt nec purus. Sed a libero id metus tempus semper sed ut ante. Nunc pharetra nisl placerat mi blandit tincidunt. Aliquam congue vitae nisi at maximus. Quisque suscipit tellus quam, eu interdum nulla hendrerit non. Sed luctus dignissim nulla, ut iaculis magna faucibus et. Morbi consectetur, odio non feugiat cursus, elit ante dictum mi, condimentum pharetra leo magna eu mauris. Aenean consectetur aliquet dui non dapibus. Nulla pretium pharetra eros, quis pellentesque ex dignissim pellentesque.
-
-Quisque posuere, dui at tempor posuere, diam turpis blandit lorem, nec interdum ligula metus id est. Proin id urna leo. Fusce suscipit, ipsum quis viverra cursus, urna lectus consequat nisi, laoreet dictum risus magna placerat arcu. Morbi.
+ En esta área puedes consultar un alumno para verificar si posee una inscripción.</br></br>
+-Debes ingresar el Rut sin puntos ni guion, si el número verificador es K remplazarlo por un cero (0).</br>
+ <STRONG>Ejemplo</STRONG> </br>
+Si el RUT es 12.345.678-9   ingresar 123456789</br>
+Si el RUT es 12.345.678-K   ingresar 123456780
   </div>
 </div>
 </div>

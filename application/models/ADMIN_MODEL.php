@@ -33,6 +33,15 @@ talleres.HORARIO
 	else return null;
 }
 
+public function get()
+	{
+			$sql="SELECT * FROM t001_alumno;";
+	
+	$query=$this->db->query($sql,array());
+		if($query->num_rows()>0) return $query;
+			else return null;
+	}
+
 function obtenerTalleresCursos($id)
 {
 	
@@ -50,13 +59,15 @@ function listaPorCurso($id)
 {
 	
 	$sql="SELECT 
-t004_inscrito.RUT,
+CONCAT(' ',t004_inscrito.RUT) as RUT,
 t001_alumno.NOMBRE,
 t003_talleres.NOMBRE as TALLER,
+t002_curso.NOMBRE  as CURSO,
 t004_inscrito.FECHA_INSC AS INSCRITO,
 t006_estado_inscripcion.NOMBRE AS ESTADO
 FROM t004_inscrito 
 LEFT JOIN t001_alumno ON t004_inscrito.RUT=t001_alumno.RUT
+LEFT JOIN t002_curso ON t002_curso.ID=t001_alumno.CURSO
 LEFT JOIN t003_talleres ON t004_inscrito.TALLER=t003_talleres.ID
 LEFT JOIN t006_estado_inscripcion ON t004_inscrito.ESTADO=t006_estado_inscripcion.ID
 where TALLER=?";
@@ -67,33 +78,59 @@ where TALLER=?";
 	else return null;
 }
 
-
-
-/*function obtenerCurso($id)
+function obtenerAlumnoInscrito($id)
 {
-	$this->db->where('idCurso',$id);
-	$query=$this->db->get('cursos');
 	
+	$sql="SELECT 
+t004_inscrito.RUT,
+t001_alumno.NOMBRE,
+t003_talleres.NOMBRE as TALLER,
+t002_curso.NOMBRE as CURSO,
+t004_inscrito.FECHA_INSC AS INSCRITO,
+t006_estado_inscripcion.NOMBRE AS ESTADO
+FROM t004_inscrito 
+LEFT JOIN t001_alumno ON t004_inscrito.RUT=t001_alumno.RUT
+LEFT JOIN t002_curso ON t002_curso.ID=t001_alumno.CURSO
+LEFT JOIN t003_talleres ON t004_inscrito.TALLER=t003_talleres.ID
+LEFT JOIN t006_estado_inscripcion ON t004_inscrito.ESTADO=t006_estado_inscripcion.ID
+where t004_inscrito.RUT=?";
+	
+	$query=$this->db->query($sql,array($id));
 
 	if($query->num_rows()>0) return $query;
-	else return false;
+	else return null;
 }
 
-function actualizarCurso($id,$data)
+function obtenernNombreTaller($id)
 {
-	$datos=array(
-		'nombreCUrso'=>$data['nombre'],
-		'videosCursos'=>$data['video']);
-		
-		$this->db->where('idCurso',$id);
-		$this->db->update('cursos',$datos);
+	
+	$sql="SELECT 
+NOMBRE AS TALLERNOMBRE
+FROM t003_talleres WHERE ID=?";
+	
+	$query=$this->db->query($sql,array($id));
+
+	if($query->num_rows()>0) return $query;
+	else return null;
 }
 
-function eliminarCurso($id)
+function obtenerAlumno($id)
 {
-	$sql="delete from cursos where idCurso=?";
-	$this->db->query($sql,array($id));
-}*/
+	
+	$sql="SELECT 
+	t001_alumno.RUT,
+	t001_alumno.NOMBRE,
+	t002_curso.NOMBRE as CURSO,
+	'NO INSCRITO' AS ESTADO
+	FROM t001_alumno 
+	LEFT JOIN t002_curso ON t002_curso.ID=t001_alumno.CURSO
+	where t001_alumno.RUT=?";
+	
+	$query=$this->db->query($sql,array($id));
+
+	if($query->num_rows()>0) return $query;
+	else return null;
+}
 
 
 

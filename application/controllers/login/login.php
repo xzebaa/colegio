@@ -111,7 +111,22 @@ class LOGIN extends CI_Controller {
 					if($alumnos->num_rows()==1)
 					{
 						$alumno = $alumnos ->result();
-						$this->cargaUser($alumno);
+						if($alumno[0]->CURSOID ==1)
+						{
+							$pwVerif = substr ($this->input->post("user"),0,4);
+							if($pwVerif==$this->input->post("pass"))
+							{
+								$this->cargaUser($alumno);
+							}
+							else
+							{
+								
+								$this->form_validation->set_rules('myfield2', 'My Field Name', 'callback_name_function2');
+								$this->form_validation->run();
+								$this->admin();
+							}
+						
+						}
 
 					}
 				}
@@ -120,19 +135,21 @@ class LOGIN extends CI_Controller {
 
 					$this->form_validation->set_rules('myfield', 'My Field Name', 'callback_name_function');
 					$this->form_validation->run();
-					$this->admin();
+					//$this->admin();
 				}
 
 
 
 			}
-			else{ $this->admin();}
+			else{ //$this->admin();
+			}
 
 		}else if($this->session->userdata('CURSO')){
 			$this->redirectUserAct();
 		}else{
 
-			$this->admin();}
+		//	$this->admin();
+		}
 	
 	}
 
@@ -141,6 +158,13 @@ class LOGIN extends CI_Controller {
         $this->form_validation->set_message('name_function', 'Lo sentimos, no tenemos registro de este alumno!');
         return false;
     }
+
+	public function name_function2()
+    {
+        $this->form_validation->set_message('name_function2', 'Lo sentimos, el usuario o contraseña no son validos!');
+        return false;
+    }
+
 	function cargaUser($alumno)
 	{
 		$this->session->set_userdata(array(
@@ -149,7 +173,7 @@ class LOGIN extends CI_Controller {
 			"CURSO"=>$alumno[0]->CURSOID,
 			"NOMCURSO"=>$alumno[0]->CURSO
 			));
-		if($alumno[0]->CURSO ==1)
+		if($alumno[0]->CURSOID ==1)
 			redirect(base_url()."panel/".str_ireplace(" ","_",str_ireplace(",","",$this->session->userdata('NOMBRE'))));
 		else
 			redirect(base_url()."talleres/".str_ireplace(" ","_",str_ireplace(",","",$this->session->userdata('NOMBRE'))));
@@ -159,7 +183,7 @@ class LOGIN extends CI_Controller {
 	function redirectUserAct()
 	{
 		if($this->session->userdata('CURSO') ==1)
-			redirect(base_url()."admin");
+			redirect(base_url()."panel/".str_ireplace(" ","_",str_ireplace(",","",$this->session->userdata('NOMBRE'))));
 		else if($this->session->userdata('CURSO') >1)
 			redirect(base_url()."talleres/".str_ireplace(" ","_",str_ireplace(",","",$this->session->userdata('NOMBRE'))));
 	}

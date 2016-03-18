@@ -59,4 +59,5 @@ $route['admin'] = 'login/LOGIN/admin';
 $route['talleres/(:any)'] = 'usuarios/USUARIOS/index';
 $route['talleres/(:any)/confirmacion'] = 'talleres/TALLERES/inscribeTaller';
 $route['404_override'] = 'login/LOGIN/ingreso';
+$route['panel/(:any)'] ='admin/PRINCIPAL/index';
 

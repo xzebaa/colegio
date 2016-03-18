@@ -18,7 +18,7 @@
 		<div class="panel-heading">Nota !</div>
 		<div class="panel-body">
 			<div class="row">
-				Para mas informacion de los cursos puedes precionar en el nombre y podras extraer una lista con los alumnos inscrito y en lista de espera.
+				Para más información de los cursos puedes presionar en el nombre y podrás extraer una lista con los alumnos inscrito y en lista de espera.
 			</div>
 		</div>
 	</div>
@@ -91,7 +91,7 @@ $(document).ready(function(){
 
 function cargaInfoCurso(id)
 {
-	alert(id);
+	//alert(id);
 	var resp = ajax_({'cur':id},'<?php echo base_url("admin/PRINCIPAL/listaPorCurso");?>');
     if(resp!=0)
        $( "#contDinamico" ).html(resp);
